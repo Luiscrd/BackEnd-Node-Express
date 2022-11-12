@@ -17,7 +17,7 @@ const createUser = async (req = request, res = response) => {
 
     try {
 
-        const exist = await User.findOne({ email: req.body.email })
+        const exist = await User.findOne({ email: req.body.email });
 
         if (exist) {
 
@@ -33,7 +33,7 @@ const createUser = async (req = request, res = response) => {
         // Encriptar password
         const salt = bcrypt.genSaltSync();
 
-        user.password = bcrypt.hashSync(user.password, salt)
+        user.password = bcrypt.hashSync(user.password, salt);
 
         await user.save();
 
@@ -71,7 +71,13 @@ const updateUser = async (req = request, res = response) => {
 
         }
 
-        const emailExist = await User.findOne({ email: request.body.email });
+        const campos = req.body;
+
+        delete campos.role;
+
+        delete campos.google;
+
+        const emailExist = await User.findOne({ email: campos.email });
 
         if (emailExist) {
 
@@ -85,12 +91,6 @@ const updateUser = async (req = request, res = response) => {
             }
 
         }
-        
-        const campos = req.body;
-
-        delete campos.role;
-
-        delete campos.google;
 
         if (campos.password) {
 
@@ -99,10 +99,9 @@ const updateUser = async (req = request, res = response) => {
 
             campos.password = bcrypt.hashSync(campos.password, salt);
 
-
         }
 
-        const user = await User.findByIdAndUpdate(req.params.id, campos, { new: true })
+        const user = await User.findByIdAndUpdate(req.params.id, campos, { new: true });
 
         res.status(200).json({
             ok: true,
@@ -123,8 +122,35 @@ const updateUser = async (req = request, res = response) => {
 
 }
 
+const deleteUser = async (req = request, res = response) => {
+
+    try {
+
+        const user = await User.findById( req.params.id );
+
+        await user.delete();
+
+        res.status(200).json({
+            ok: true
+        });
+
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).json({
+            ok: false,
+            msg: 'Internal server error'
+        });
+
+    }
+
+}
+
 module.exports = {
     getUsers,
     createUser,
-    updateUser
+    updateUser,
+    deleteUser
 }
