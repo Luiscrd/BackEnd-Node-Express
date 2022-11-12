@@ -20,8 +20,6 @@ const dbConnection = () => {
 
         console.log(error);
 
-        throw new Error('Error or init BD', error);
-
     }
 
 }

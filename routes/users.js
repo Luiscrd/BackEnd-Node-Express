@@ -13,7 +13,7 @@ router.post('/', [
     check('email', 'Email is required').not().isEmpty(),
     check('email', 'Format no valid').isEmail(),
     check('password', 'Password is required').not().isEmpty(),
-    validateFields(),
+    validateFields,
 ], createUser);
 
 module.exports = router;
