@@ -21,7 +21,7 @@ const createUser = async (req = request, res = response) => {
 
         if ( exist ) {
 
-            res.status(401).json({
+            return res.status(400).json({
                 ok: false,
                 msg: 'Email exist'
             });
