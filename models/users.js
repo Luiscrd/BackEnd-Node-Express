@@ -18,10 +18,6 @@ const UserSchema = Schema({
         required: true
     },
 
-    newPassword: {
-        type: String,
-    },
-
     img: {
         type: String,
     },
