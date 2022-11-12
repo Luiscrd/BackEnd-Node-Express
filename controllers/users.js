@@ -87,7 +87,7 @@ const updateUser = async (req = request, res = response) => {
                     ok: false,
                     msg: 'Email exist'
                 });
-    
+
             }
 
         }
@@ -126,7 +126,16 @@ const deleteUser = async (req = request, res = response) => {
 
     try {
 
-        const user = await User.findById( req.params.id );
+        const user = await User.findById(req.params.id);
+
+        if (!user) {
+
+            return res.status(400).json({
+                ok: false,
+                msg: 'User no exist'
+            });
+
+        }
 
         await user.delete();
 

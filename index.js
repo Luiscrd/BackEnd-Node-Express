@@ -18,6 +18,8 @@ dbConnection();
 // Rutas
 app.use('/api/v1/users', require('./routes/users'));
 
+app.use('/api/v1/login', require('./routes/auth'));
+
 const port = process.env.PORT;
 
 // Poner a escuchar el servidor
