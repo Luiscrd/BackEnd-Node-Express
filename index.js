@@ -24,5 +24,7 @@ const port = process.env.PORT;
 
 // Poner a escuchar el servidor
 app.listen(port, () => {
-  console.log(`Server run in: Http://localhost:${port}`)
+  console.log(`Server run in: Http://localhost:${port}`);
+  console.log(`Users: Http://localhost:${port}/api/v1/users`);
+  console.log(`Login: Http://localhost:${port}/api/v1/login`);
 });

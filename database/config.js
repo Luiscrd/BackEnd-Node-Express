@@ -14,7 +14,9 @@ const dbConnection = () => {
 
         mongoose.connect(`${baseUrl}${user}:${password}${db}`);
 
-        console.log('DB Online');
+        console.log('-----------------------');
+        console.log('- DB Online - MongoDB -');
+        console.log('-----------------------');
 
     } catch (error) {
 
