@@ -6,4 +6,4 @@
 
 ## Running server
 
-Run `npm run start:dev` to execute server in production.
+Run `npm run start:dev` to execute server.
