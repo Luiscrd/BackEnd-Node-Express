@@ -1,17 +1,33 @@
+const User = require('../models/users');
+
 const getUsers = (req, res) => {
 
     res.status(200).json({
         ok: true,
-        msg: 'Get Users...'
     });
 
 }
 
-const createUser = (req, res) => {
+const createUser = async(req, res) => {
+
+    const user = new User(req.body);
+
+    await user.save();
+
+    const { name, email, role, google } = user;
+
+    const resp = {
+        id: user._id,
+        name,
+        email,
+        role,
+        google
+
+    }
 
     res.status(200).json({
         ok: true,
-        msg: 'Creating User...'
+        user: resp
     });
 
 }
