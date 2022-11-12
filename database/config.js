@@ -15,10 +15,16 @@ const dbConnection = async () => {
 
         });
 
+        console.log('DB Online');
+
     } catch (error) {
 
         throw new Error('Error a la hora de iniciar la BD', error);
 
     }
 
+}
+
+module.exports = {
+    dbConnection
 }
