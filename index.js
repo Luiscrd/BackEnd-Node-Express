@@ -9,11 +9,9 @@ app.use(cors());
 
 dbConnection();
 
-const port = process.env.PORT;
+app.use('/api/v1/usuarios', require('./routes/usuarios'));
 
-app.get('/', (req, res) => {
-  res.status(200).json({ ok: true, msg: 'Hola Mundo'})
-});
+const port = process.env.PORT;
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en: Http://localhost:${port}`)
