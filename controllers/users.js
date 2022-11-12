@@ -1,5 +1,4 @@
-const { request, response } = require('express')
-const { validationResult } = require('express-validator');
+const { request, response } = require('express');
 const User = require('../models/users');
 
 const getUsers = async (req = request, res = response) => {
@@ -14,17 +13,6 @@ const getUsers = async (req = request, res = response) => {
 }
 
 const createUser = async (req = request, res = response) => {
-
-    const errors = validationResult(req).errors;
-
-    if (errors.length != 0) {
-
-        return res.status(400).json({
-            ok: false,
-            errors
-        });
-
-    }
 
     try {
 
