@@ -7,7 +7,7 @@ const router = Router();
 router.get('/', getUsers);
 
 router.post('/', [
-    check('nombre').not().isEmpty(),
+    check('name').not().isEmpty(),
     check('email').not().isEmpty().isEmail(),
     check('password').not().isEmpty()
 ], createUser);
