@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken');
 
 const validateJWT = (req = request, res = response, next) => {
 
-    const jwtUser = request.header('jwt');
+    const jwtUser = req.header('jwt');
 
-    if (!jwtUser) {
+    if (jwtUser === undefined) {
 
         return res.status(401).json({
             ok: false,
@@ -21,9 +21,11 @@ const validateJWT = (req = request, res = response, next) => {
         req.uid = uid;
 
         next();
-        
+
     } catch (error) {
-        
+
+        console.log(error)
+
         return res.status(401).json({
             ok: false,
             msg: 'JWT not valid'

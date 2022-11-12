@@ -29,7 +29,7 @@ const createMedic = async (req = request, res = response) => {
 
     try {
 
-        const medic = new Medic(req.body);
+        const medic = new Medic({...req.body, user: req.uid});
 
         await medic.save();
 

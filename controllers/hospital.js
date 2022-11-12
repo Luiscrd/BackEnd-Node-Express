@@ -1,7 +1,6 @@
 const { request, response } = require('express');
 const bcrypt = require('bcryptjs');
 const Hospital = require('../models/hospital');
-const generateJWT = require('../helpers/jwt');
 
 const getHospitals = async (req = request, res = response) => {
 
@@ -29,7 +28,7 @@ const createHospital = async (req = request, res = response) => {
 
     try {
 
-        const hospital = new Hospital(req.body);
+        const hospital = new Hospital({...req.body, user: req.uid});
 
         await hospital.save();
 

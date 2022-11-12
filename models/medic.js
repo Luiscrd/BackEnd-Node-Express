@@ -11,10 +11,17 @@ const medicSchema = Schema({
         type: String,
     },
 
-    hspital: {
+    hospital: {
         type: Schema.Types.ObjectId,
         ref: 'Hospìtal'
-    }
+    },
+
+    user: {
+        required: true,
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+
 })
 
 medicSchema.method('toJSON', function() {

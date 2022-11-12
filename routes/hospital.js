@@ -18,6 +18,7 @@ router.get('/:id', [
 router.post('/', [
     check('name', 'Name is required').not().isEmpty(),
     validateFields,
+    validateJWT,
 ], createHospital);
 
 router.put('/:id', [
