@@ -1,6 +1,7 @@
 const { request, response } = require('express');
 const bcrypt = require('bcryptjs');
 const User = require('../models/users');
+const generateJWT = require('../helpers/jwt');
 
 const getUsers = async (req = request, res = response) => {
 
@@ -9,6 +10,17 @@ const getUsers = async (req = request, res = response) => {
     res.status(200).json({
         ok: true,
         users
+    });
+
+}
+
+const getUserById = async (req = request, res = response) => {
+
+    const user = await User.findById(req.params.id)
+
+    res.status(200).json({
+        ok: true,
+        user
     });
 
 }
@@ -37,8 +49,12 @@ const createUser = async (req = request, res = response) => {
 
         await user.save();
 
+        // Generar JWT
+        const jwt = await generateJWT(user);
+
         res.status(200).json({
             ok: true,
+            jwt,
             user
         });
 
@@ -159,6 +175,7 @@ const deleteUser = async (req = request, res = response) => {
 
 module.exports = {
     getUsers,
+    getUserById,
     createUser,
     updateUser,
     deleteUser

@@ -1,6 +1,7 @@
 const { request, response } = require('express');
 const bcrypt = require('bcryptjs');
 const User = require('../models/users');
+const generateJWT = require('../helpers/jwt');
 
 const loginUser = async (req = request, res = response) => {
 
@@ -20,8 +21,6 @@ const loginUser = async (req = request, res = response) => {
 
         }
 
-        // Generar JWT
-
         // Verificar password
         const validPassword = bcrypt.compareSync(password, user.password);
 
@@ -34,9 +33,12 @@ const loginUser = async (req = request, res = response) => {
 
         }
 
+        // Generar JWT
+        const jwt = await generateJWT(user);
+
         res.status(200).json({
             ok: true,
-            user
+            jwt
         });
 
 
