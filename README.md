@@ -18,3 +18,4 @@ Run `npm run start:dev` to execute server.
 * mongose
 * dotenv
 * cors
+* bcryptjs
