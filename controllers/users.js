@@ -17,20 +17,11 @@ const createUser = async(req, res) => {
 
     await user.save();
 
-    const { name, email, role, google } = user;
-
-    const resp = {
-        id: user._id,
-        name,
-        email,
-        role,
-        google
-
-    }
+    delete user.password;
 
     res.status(200).json({
         ok: true,
-        user: resp
+        user
     });
 
 }
