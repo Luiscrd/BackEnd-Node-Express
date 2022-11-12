@@ -21,6 +21,8 @@ app.use('/api/v1/users', require('./routes/users'));
 
 app.use('/api/v1/hospitals', require('./routes/hospital'));
 
+app.use('/api/v1/medics', require('./routes/medic'));
+
 app.use('/api/v1/login', require('./routes/auth'));
 
 const port = process.env.PORT;
@@ -30,5 +32,6 @@ app.listen(port, () => {
   console.log(`[indexjs] Server run in: Http://localhost:${port}`.green);
   console.log(`[indexjs] Users: Http://localhost:${port}/api/v1/users`.green);
   console.log(`[indexjs] Hospitals:: Http://localhost:${port}/api/v1/hospitals`.green);
+  console.log(`[indexjs] Medics:: Http://localhost:${port}/api/v1/medics`.green);
   console.log(`[indexjs] Login: Http://localhost:${port}/api/v1/login`.green);
 });
