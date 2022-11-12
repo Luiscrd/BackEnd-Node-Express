@@ -2,7 +2,7 @@ const getUsers = (req, res) => {
 
     res.status(200).json({
         ok: true,
-        msg: 'Hola Mundo'
+        msg: 'Get Users...'
     });
 
 }
@@ -11,7 +11,7 @@ const createUser = (req, res) => {
 
     res.status(200).json({
         ok: true,
-        msg: 'Hola Mundo'
+        msg: 'Creating User...'
     });
 
 }
