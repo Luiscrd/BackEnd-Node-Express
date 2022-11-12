@@ -1,6 +1,8 @@
+const { request, response } = require('express')
+
 const User = require('../models/users');
 
-const getUsers = async(req, res) => {
+const getUsers = async (req = request, res = response) => {
 
     const users = await User.find({}, 'name email role google');
 
@@ -11,18 +13,43 @@ const getUsers = async(req, res) => {
 
 }
 
-const createUser = async(req, res) => {
+const createUser = async (req = request, res = response) => {
 
-    const user = new User(req.body);
+    try {
 
-    await user.save();
+        const exist = await User.findOne({ email: req.body.email })
 
-    delete user.password;
+        if ( exist ) {
 
-    res.status(200).json({
-        ok: true,
-        user
-    });
+            res.status(401).json({
+                ok: false,
+                msg: 'Email exist'
+            });
+
+        }
+
+        const user = new User(req.body);
+
+        await user.save();
+
+        delete user.password;
+
+        res.status(200).json({
+            ok: true,
+            user
+        });
+
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).json({
+            ok: false,
+            msg: 'Internal server error'
+        });
+
+    }
 
 }
 
