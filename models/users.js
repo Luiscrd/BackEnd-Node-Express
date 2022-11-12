@@ -18,6 +18,10 @@ const UserSchema = Schema({
         required: true
     },
 
+    newPassword: {
+        type: String,
+    },
+
     img: {
         type: String,
     },
@@ -37,7 +41,7 @@ const UserSchema = Schema({
 
 UserSchema.method('toJSON', function() {
 
-    const {__v, _id, ...object} = this.toObject();
+    const {__v, _id, password, ...object} = this.toObject();
 
     object.uid = _id;
 
