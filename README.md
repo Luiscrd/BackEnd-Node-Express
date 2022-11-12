@@ -4,6 +4,10 @@
 
 # BackEnd-Node-Express
 
+## Configure '.env'
+
+Rename file '.exaple.env' for '.env' and insert your credentials.
+
 ## Running server
 
 Run `npm run start:dev` to execute server.
