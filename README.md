@@ -3,3 +3,7 @@
 </p>
 
 # BackEnd-Node-Express
+
+## Running server
+
+Run `npm run start:dev` to execute server.
