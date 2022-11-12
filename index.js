@@ -9,10 +9,10 @@ app.use(cors());
 
 dbConnection();
 
-app.use('/api/v1/usuarios', require('./routes/usuarios'));
+app.use('/api/v1/users', require('./routes/users'));
 
 const port = process.env.PORT;
 
 app.listen(port, () => {
-  console.log(`Servidor corriendo en: Http://localhost:${port}`)
+  console.log(`Server run in: Http://localhost:${port}`)
 });

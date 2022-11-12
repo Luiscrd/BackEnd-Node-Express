@@ -20,7 +20,7 @@ const dbConnection = () => {
 
         console.log(error);
 
-        throw new Error('Error a la hora de iniciar la BD', error);
+        throw new Error('Error or init BD', error);
 
     }
 
