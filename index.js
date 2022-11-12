@@ -1,6 +1,7 @@
 const express = require('express');
 const { dbConnection } = require('./database/config');
 const cors = require('cors');
+const colors = require('colors');
 require('dotenv').config();
 
 // Crear el servidor Express
@@ -24,7 +25,7 @@ const port = process.env.PORT;
 
 // Poner a escuchar el servidor
 app.listen(port, () => {
-  console.log(`Server run in: Http://localhost:${port}`);
-  console.log(`Users: Http://localhost:${port}/api/v1/users`);
-  console.log(`Login: Http://localhost:${port}/api/v1/login`);
+  console.log(`[indexjs] Server run in: Http://localhost:${port}`.green);
+  console.log(`[indexjs] Users: Http://localhost:${port}/api/v1/users`.green);
+  console.log(`[indexjs] Login: Http://localhost:${port}/api/v1/login`.green);
 });

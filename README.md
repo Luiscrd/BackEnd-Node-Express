@@ -14,6 +14,8 @@ Run `npm run start:dev` to execute server.
 
 ## npm libraries
 
+* colors
+* express
 * nodemon
 * mongose
 * dotenv

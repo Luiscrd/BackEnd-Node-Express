@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const colors = require('colors');
 
 const dbConnection = () => {
 
@@ -14,9 +15,9 @@ const dbConnection = () => {
 
         mongoose.connect(`${baseUrl}${user}:${password}${db}`);
 
-        console.log('-----------------------');
-        console.log('- DB Online - MongoDB -');
-        console.log('-----------------------');
+        console.log('[mongose] -------------------------'.blue);
+        console.log('[mongose] -> DB Online - MongoDB <-'.blue);
+        console.log('[mongose] -------------------------'.blue);
 
     } catch (error) {
 
