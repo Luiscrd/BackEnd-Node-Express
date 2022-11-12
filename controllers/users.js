@@ -1,9 +1,12 @@
 const User = require('../models/users');
 
-const getUsers = (req, res) => {
+const getUsers = async(req, res) => {
+
+    const users = await User.find({});
 
     res.status(200).json({
         ok: true,
+        users
     });
 
 }
