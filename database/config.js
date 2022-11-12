@@ -2,13 +2,17 @@ const mongoose = require('mongoose');
 
 const dbConnection = () => {
 
-    const user = 'lcarballo';
+    const baseUrl = 'mongodb+srv://';
 
-    const password = 'PcHQKHfn6shAIJto';
+    const user = process.env.MONGODB_USER;
+
+    const password = process.env.MONGODB_PASSWORD;
+
+    const db = process.env.MONGODB_DB;
 
     try {
 
-        mongoose.connect(`mongodb+srv://${user}:${password}@adminpro.fxdzqn4.mongodb.net/test`);
+        mongoose.connect(`${baseUrl}${user}:${password}${db}`);
 
         console.log('DB Online');
 
