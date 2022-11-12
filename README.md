@@ -12,6 +12,9 @@ Rename file '.exaple.env' for '.env' and insert your credentials.
 
 Run `npm run start:dev` to execute server.
 
+## npm libraries
+
 * nodemon
 * mongose
 * dotenv
+* cors
