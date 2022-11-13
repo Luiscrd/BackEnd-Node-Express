@@ -17,6 +17,8 @@ router.get('/:id', [
 
 router.post('/', [
     check('name', 'Name is required').not().isEmpty(),
+    check('hospital', 'Hospital is required').not().isEmpty(),
+    check('hospital', 'Format Hospital id not valid').isMongoId(),
     validateFields,
     validateJWT,
 ], createMedic);

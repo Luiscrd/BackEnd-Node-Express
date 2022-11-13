@@ -26,6 +26,6 @@ hospitalSchema.method('toJSON', function() {
 
     return object;
 
-}, { collection: 'Hopitals'})
+});
 
 module.exports = model('Hospital', hospitalSchema);
