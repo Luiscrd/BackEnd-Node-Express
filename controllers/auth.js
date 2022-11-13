@@ -2,13 +2,14 @@ const { request, response } = require('express');
 const bcrypt = require('bcryptjs');
 const User = require('../models/users');
 const generateJWT = require('../helpers/jwt');
+const { verifyGoogle } = require('../helpers/jwt-google');
 
 const loginUser = async (req = request, res = response) => {
 
     const { email, password } = req.body;
 
     try {
-        
+
         // Verificar email
         const user = await User.findOne({ email });
 
@@ -59,10 +60,29 @@ const googleUser = async (req = request, res = response) => {
 
     const jwtGoogle = req.body.jwt;
 
-    res.status(200).json({
-        ok: true,
-        jwtGoogle
-    });
+    try {
+
+        const userGoogle = await verifyGoogle(jwtGoogle);
+
+        res.status(200).json({
+            ok: true,
+            userGoogle
+        });
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(400).json({
+            ok: false,
+            msg: 'GoogleToken no valid'
+        });
+
+    }
+
+
+
+
 
 
 }
