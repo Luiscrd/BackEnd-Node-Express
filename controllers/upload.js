@@ -10,39 +10,35 @@ const uploadFile = async (req = request, res = response) => {
 
     const id = req.params.id;
 
-    switch (collection) {
-        case 'users':
-  
-            res.status(200).json({
-                ok: true,
-                collection,
-                search,
-            });
-            break;
+    const validColletions = ['users', 'hospitals', 'medics'];
 
-        case 'hospitals':
-            res.status(200).json({
-                ok: true,
-                collection,
-                search,
-            });
-            break;
+    if ( !validColletions.includes(collection) ) {
 
-        case 'medics':
-            res.status(200).json({
-                ok: true,
-                collection,
-                search,
-            });
-            break;
-
-        default:
-            res.status(400).json({
-                ok: false,
-                msg: `'${collection}' not is valid term: (users, hospitals, medics).`
-            });
+        return res.status(400).json({
+            ok: false,
+            msg: `'${collection}' not is valid term: (users, hospitals, medics).`
+        });
 
     }
+
+    // VFalidar que exista un archivo
+    if ( !req.files || Object.keys(req.files).length === 0 ) {
+
+        return res.status(400).json({
+            ok: false,
+            msg: 'No files in rquest'
+        });
+
+    }
+
+    // Procesar la imagen
+
+    console.log(req.files.image);
+
+    res.status(200).json({
+        ok: true,
+        msg: 'File upload Ok'
+    });
 
 }
 

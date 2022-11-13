@@ -6,7 +6,7 @@ const { validateJWT } = require('../middlewares/validate-jwt');
 
 const router = Router();
 
-router.put('/:colection/:id', [
+router.put('/:collection/:id', [
     validateJWT
 ], uploadFile);
 

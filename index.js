@@ -1,4 +1,5 @@
 const express = require('express');
+const fileUpload = require('express-fileupload');
 const { dbConnection } = require('./database/config');
 const cors = require('cors');
 const colors = require('colors');
@@ -12,6 +13,9 @@ app.use(cors());
 
 // Lectura y parseo del body
 app.use(express.json());
+
+// File Upload
+app.use(fileUpload());
 
 // Conexión a la BD
 dbConnection();

@@ -22,3 +22,4 @@ Run `npm run start:dev` to execute server.
 * cors
 * bcryptjs
 * jsonwebtoken
+* express-fileupload
