@@ -14,7 +14,7 @@ router.post('/', [
 
 router.post('/google', [
     check('jwt', 'JWT is required').not().isEmpty(),
-    // check('jwt', 'JWT no valid').isJWT(),
+    check('jwt', 'JWT no valid').isJWT(),
     validateFields,
 ], googleUser);
 
