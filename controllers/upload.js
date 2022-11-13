@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/users');
 const Hospital = require('../models/hospital');
 const Medic = require('../models/medic');
+const { uploadImg } = require('../helpers/update-img');
 
 const uploadFile = async (req = request, res = response) => {
 
@@ -67,6 +68,9 @@ const uploadFile = async (req = request, res = response) => {
             });
 
         }
+
+        // Actualizar Bd
+        uploadImg(collection, id, fileName);
 
         res.status(200).json({
             ok: true,
