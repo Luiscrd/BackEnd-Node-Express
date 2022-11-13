@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { getAll, getAllById } = require('../controllers/all');
+const { getAll, getAllBySearc, getAllBySearcColection } = require('../controllers/all');
 const { validateJWT } = require('../middlewares/validate-jwt');
 
 
@@ -12,6 +12,10 @@ router.get('/', [
 
 router.get('/:search', [
     validateJWT
-], getAllById);
+], getAllBySearc);
+
+router.get('/:colection/:search', [
+    validateJWT
+], getAllBySearcColection);
 
 module.exports = router;

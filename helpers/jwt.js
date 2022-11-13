@@ -4,8 +4,6 @@ const generateJWT = (user) => {
 
     return new Promise((resolve, reject) => {
 
-        console.log(user);
-
         const { _id, name, email, role } = user;
 
         const payload = {
