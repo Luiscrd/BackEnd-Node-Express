@@ -19,6 +19,8 @@ dbConnection();
 // Rutas
 app.use('/api/v1/login', require('./routes/auth'));
 
+app.use('/api/v1/upload', require('./routes/upload'));
+
 app.use('/api/v1/all', require('./routes/all'));
 
 app.use('/api/v1/users', require('./routes/users'));
@@ -34,7 +36,8 @@ app.listen(port, () => {
   console.log(`[rserver] Server run in ---> Http://localhost:${port} <---`);
   console.log(`[routesl] ---------------------------------------------`.green);
   console.log(`[routesl] Login: Http://localhost:${port}/api/v1/login`.green);
-  console.log(`[routesl] All: Http://localhost:${port}/api/v1/all`.green);
+  console.log(`[routesl] Upload File: Http://localhost:${port}/api/v1/upload`.green);
+  console.log(`[routesl] Search All: Http://localhost:${port}/api/v1/all`.green);
   console.log(`[routesl] Users: Http://localhost:${port}/api/v1/users`.green);
   console.log(`[routesl] Hospitals:: Http://localhost:${port}/api/v1/hospitals`.green);
   console.log(`[routesl] Medics:: Http://localhost:${port}/api/v1/medics`.green);

@@ -19,6 +19,7 @@ const getAll = async (req = request, res = response) => {
             const usersId = await User.find({ name: regex }).limit(limit);
             res.status(200).json({
                 ok: true,
+                collection,
                 search,
                 users: usersId
             });
@@ -28,6 +29,7 @@ const getAll = async (req = request, res = response) => {
             const hospitalsId = await Hospital.find({ name: regex }).limit(limit);
             res.status(200).json({
                 ok: true,
+                collection,
                 search,
                 hospitals: hospitalsId
             });
@@ -37,6 +39,7 @@ const getAll = async (req = request, res = response) => {
             const medicsId = await Medic.find({ name: regex }).limit(limit);
             res.status(200).json({
                 ok: true,
+                collection,
                 search,
                 medics: medicsId
             });
