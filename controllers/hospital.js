@@ -13,7 +13,7 @@ const getHospitals = async (req = request, res = response) => {
             .populate('user', 'name img')
             .skip(to)
             .limit(limit),
-        Hospital.count()
+        Hospital.countDocuments()
     ]);
 
     res.status(200).json({

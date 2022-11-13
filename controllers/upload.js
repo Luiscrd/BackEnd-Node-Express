@@ -1,3 +1,5 @@
+const path = require('path');
+const fs = require('fs');
 const { request, response } = require('express');
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcryptjs');
@@ -81,7 +83,31 @@ const uploadFile = async (req = request, res = response) => {
 
 }
 
+const getFile = async (req = request, res = response) => {
+
+    const collection = req.params.collection;
+
+    const iamge = req.params.image;
+
+    const pathImage = path.join(__dirname, `../uploads/${collection}/${iamge}`);
+
+    // Imagen por defecto
+    const defaultImage = path.join(__dirname, '../uploads/no-img.jpg');
+
+    if (!fs.existsSync(pathImage)) {
+
+        res.sendFile(defaultImage);
+
+    } else {
+
+        res.sendFile(pathImage);
+
+    }
+
+}
+
 
 module.exports = {
-    uploadFile
+    uploadFile,
+    getFile
 }

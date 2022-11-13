@@ -24,3 +24,4 @@ Run `npm run start:dev` to execute server.
 * jsonwebtoken
 * express-fileupload
 * uuid
+* serve-index
