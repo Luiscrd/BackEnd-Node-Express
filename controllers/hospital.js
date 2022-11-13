@@ -79,8 +79,6 @@ const updateHospital = async (req = request, res = response) => {
 
         const campos = req.body;
 
-        const emailExist = await Hospital.findOne({ email: campos.email });
-
         const hospital = await Hospital.findByIdAndUpdate(req.params.id, campos, { new: true });
 
         res.status(200).json({

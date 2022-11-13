@@ -81,8 +81,6 @@ const updateMedic = async (req = request, res = response) => {
 
         const campos = req.body;
 
-        const emailExist = await Medic.findOne({ email: campos.email });
-
         const medic = await Medic.findByIdAndUpdate(req.params.id, campos, { new: true });
 
         res.status(200).json({

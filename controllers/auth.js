@@ -107,14 +107,26 @@ const googleUser = async (req = request, res = response) => {
 
     }
 
+}
 
+const renewToken = async (req = request, res = response) => {
 
+    const uid = req.uid;
 
+    const user = await User.findById(uid);
 
+    const jwt = await generateJWT(user);
+
+    res.status(200).json({
+        ok: true,
+        user,
+        jwt
+    });
 
 }
 
 module.exports = {
     loginUser,
-    googleUser
+    googleUser,
+    renewToken
 }
