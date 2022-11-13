@@ -9,15 +9,19 @@ const getMedics = async (req = request, res = response) => {
 
     const limit = Number(req.query.limit) || 5;
 
-    const medics = await Medic.find()
-    .populate('user', 'name img')
-    .populate('hospital', 'name img')
-    .skip(to)
-    .limit(limit);
+    const [medics, total] = await Promise.all([
+        Medic.find()
+            .populate('user', 'name img')
+            .populate('hospital', 'name img')
+            .skip(to)
+            .limit(limit),
+        Medic.count()
+    ]);
 
     res.status(200).json({
         ok: true,
-        medics
+        medics,
+        total
     });
 
 }
@@ -37,7 +41,7 @@ const createMedic = async (req = request, res = response) => {
 
     try {
 
-        const medic = new Medic({...req.body, user: req.uid});
+        const medic = new Medic({ ...req.body, user: req.uid });
 
         await medic.save();
 

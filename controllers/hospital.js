@@ -8,14 +8,18 @@ const getHospitals = async (req = request, res = response) => {
 
     const limit = Number(req.query.limit) || 5;
 
-    const hospitals = await Hospital.find()
-    .populate('user', 'name img')
-    .skip(to)
-    .limit(limit);
+    const [hospitals, total] = await Promise.all([
+        Hospital.find()
+            .populate('user', 'name img')
+            .skip(to)
+            .limit(limit),
+        Hospital.count()
+    ]);
 
     res.status(200).json({
         ok: true,
-        hospitals
+        hospitals,
+        total
     });
 
 }
@@ -35,7 +39,7 @@ const createHospital = async (req = request, res = response) => {
 
     try {
 
-        const hospital = new Hospital({...req.body, user: req.uid});
+        const hospital = new Hospital({ ...req.body, user: req.uid });
 
         await hospital.save();
 
