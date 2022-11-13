@@ -10,7 +10,7 @@ router.get('/', [
     validateJWT
 ], getAll);
 
-router.get('/:id', [
+router.get('/:search', [
     validateJWT
 ], getAllById);
 
