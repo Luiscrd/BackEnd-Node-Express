@@ -14,10 +14,9 @@ const dbConnection = () => {
     try {
 
         mongoose.connect(`${baseUrl}${user}:${password}${db}`);
-
-        console.log('[mongose] -------------------------'.blue);
-        console.log('[mongose] -> DB Online - MongoDB <-'.blue);
-        console.log('[mongose] -------------------------'.blue);
+        console.log('[mongose] ---------------------------------------------'.blue);
+        console.log('[mongose] -----------> DB Online - MongoDB <-----------'.blue);
+        console.log('[mongose] ---------------------------------------------'.blue);
 
     } catch (error) {
 
