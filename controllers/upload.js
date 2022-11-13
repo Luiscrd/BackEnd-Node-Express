@@ -1,4 +1,5 @@
 const { request, response } = require('express');
+const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcryptjs');
 const User = require('../models/users');
 const Hospital = require('../models/hospital');
@@ -12,7 +13,7 @@ const uploadFile = async (req = request, res = response) => {
 
     const validColletions = ['users', 'hospitals', 'medics'];
 
-    if ( !validColletions.includes(collection) ) {
+    if (!validColletions.includes(collection)) {
 
         return res.status(400).json({
             ok: false,
@@ -22,7 +23,7 @@ const uploadFile = async (req = request, res = response) => {
     }
 
     // VFalidar que exista un archivo
-    if ( !req.files || Object.keys(req.files).length === 0 ) {
+    if (!req.files || Object.keys(req.files).length === 0) {
 
         return res.status(400).json({
             ok: false,
@@ -32,12 +33,46 @@ const uploadFile = async (req = request, res = response) => {
     }
 
     // Procesar la imagen
+    const file = req.files.image;
 
-    console.log(req.files.image);
+    const ext = file.name.split('.').at(-1);
 
-    res.status(200).json({
-        ok: true,
-        msg: 'File upload Ok'
+    const validExtensions = ['png', 'jpg', 'jpeg', 'gif'];
+
+    if (!validExtensions.includes(ext)) {
+
+        return res.status(400).json({
+            ok: false,
+            msg: `'${collection}' not is valid extensiion: (png, jpg, jpeg, gif).`
+        });
+
+    }
+
+    // Genherar nombre archivo
+    const fileName = `${uuidv4()}.${ext}`;
+
+    // Path para guardar la img
+    const path = `./uploads/${collection}/${fileName}`;
+
+    // Mover imagen
+    file.mv(path, (error) => {
+
+        if (error) {
+
+            console.log(error);
+
+            return res.status(500).json({
+                ok: false,
+                msg: 'Error to move img'
+            });
+
+        }
+
+        res.status(200).json({
+            ok: true,
+            msg: `File: ${fileName}, upload Ok`
+        });
+
     });
 
 }

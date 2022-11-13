@@ -23,3 +23,4 @@ Run `npm run start:dev` to execute server.
 * bcryptjs
 * jsonwebtoken
 * express-fileupload
+* uuid
