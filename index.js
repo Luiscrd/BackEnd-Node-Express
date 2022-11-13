@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const fileUpload = require('express-fileupload');
 const { dbConnection } = require('./database/config');
 const cors = require('cors');
@@ -20,6 +21,9 @@ app.use(fileUpload());
 
 // Conexión a la BD
 dbConnection();
+
+// Carpeta publica
+app.use(express.static('public'));
 
 // Rutas
 app.use('/api/v1/login', require('./routes/auth'));

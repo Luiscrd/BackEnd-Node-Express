@@ -55,6 +55,19 @@ const loginUser = async (req = request, res = response) => {
 
 }
 
+const googleUser = async (req = request, res = response) => {
+
+    const jwtGoogle = req.body.jwt;
+
+    res.status(200).json({
+        ok: true,
+        jwtGoogle
+    });
+
+
+}
+
 module.exports = {
-    loginUser
+    loginUser,
+    googleUser
 }
