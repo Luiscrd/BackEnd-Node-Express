@@ -4,7 +4,14 @@ const Hospital = require('../models/hospital');
 
 const getHospitals = async (req = request, res = response) => {
 
-    const hospitals = await Hospital.find().populate('user', 'name img');
+    const to = Number(req.query.to) || 0;
+
+    const limit = Number(req.query.limit) || 5;
+
+    const hospitals = await Hospital.find()
+    .populate('user', 'name img')
+    .skip(to)
+    .limit(limit);
 
     res.status(200).json({
         ok: true,

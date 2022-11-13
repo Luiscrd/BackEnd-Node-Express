@@ -5,9 +5,15 @@ const generateJWT = require('../helpers/jwt');
 
 const getMedics = async (req = request, res = response) => {
 
+    const to = Number(req.query.to) || 0;
+
+    const limit = Number(req.query.limit) || 5;
+
     const medics = await Medic.find()
     .populate('user', 'name img')
-    .populate('hospital', 'name img');
+    .populate('hospital', 'name img')
+    .skip(to)
+    .limit(limit);
 
     res.status(200).json({
         ok: true,

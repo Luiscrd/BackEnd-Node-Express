@@ -5,7 +5,11 @@ const generateJWT = require('../helpers/jwt');
 
 const getUsers = async (req = request, res = response) => {
 
-    const users = await User.find({}, 'name email role google');
+    const to = Number(req.query.to) || 0;
+
+    const limit = Number(req.query.limit) || 5;
+
+    const users = await User.find({}, 'name email role google').skip(to).limit(limit);
 
     res.status(200).json({
         ok: true,
