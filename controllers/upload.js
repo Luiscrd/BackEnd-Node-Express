@@ -92,7 +92,7 @@ const getFile = async (req = request, res = response) => {
     const pathImage = path.join(__dirname, `../uploads/${collection}/${iamge}`);
 
     // Imagen por defecto
-    const defaultImage = path.join(__dirname, '../uploads/no-img.jpg');
+    const defaultImage = path.join(__dirname, '../uploads/no-profile-picture-icon-6.png');
 
     if (!fs.existsSync(pathImage)) {
 

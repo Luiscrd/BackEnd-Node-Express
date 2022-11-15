@@ -31,6 +31,26 @@ const UserSchema = Schema({
     google: {
         type: Boolean,
         default: false
+    },
+
+    age: {
+        type: Number,
+        default: 0
+    },
+
+    phone: {
+        type: String,
+        default: '+34 '
+    },
+
+    country: {
+        type: String,
+        default: 'España'
+    },
+
+    desc: {
+        type: String,
+        default: 'Descripcion'
     }
 
 })

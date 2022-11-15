@@ -11,7 +11,7 @@ router.put('/:collection/:id', [
 ], uploadFile);
 
 router.get('/:collection/:image', [
-    validateJWT
+    // validateJWT
 ], getFile);
 
 
