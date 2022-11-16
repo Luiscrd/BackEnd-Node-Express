@@ -76,7 +76,8 @@ const uploadFile = async (req = request, res = response) => {
 
         res.status(200).json({
             ok: true,
-            msg: `File: ${fileName}, upload Ok`
+            msg: `File: ${fileName}, upload Ok`,
+            fileName
         });
 
     });
