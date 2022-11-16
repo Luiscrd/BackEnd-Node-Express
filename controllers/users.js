@@ -105,7 +105,7 @@ const updateUser = async (req = request, res = response) => {
 
         if (emailExist) {
 
-            if (exist.email.id != emailExist.id) {
+            if (exist.id != emailExist.id) {
 
                 return res.status(400).json({
                     ok: false,
