@@ -16,12 +16,14 @@ const getAll = async (req = request, res = response) => {
 
     switch (collection) {
         case 'users':
+            const totalUser = await User.find({ name: regex }).length;
             const usersId = await User.find({ name: regex }).limit(limit);
             res.status(200).json({
                 ok: true,
                 collection,
                 search,
-                users: usersId
+                users: usersId,
+                total: totalUser
             });
             break;
 
@@ -36,12 +38,14 @@ const getAll = async (req = request, res = response) => {
             break;
 
         case 'medics':
+            const total = await Medic.find({ name: regex }).length;
             const medicsId = await Medic.find({ name: regex }).limit(limit);
             res.status(200).json({
                 ok: true,
                 collection,
                 search,
-                medics: medicsId
+                medics: medicsId,
+                total
             });
             break;
 
@@ -108,11 +112,14 @@ const getAllBySearcColection = async (req = request, res = response) => {
 
     switch (collection) {
         case 'users':
-            const users = await User.find({ name: regex }).limit(limit);
+            // const totalUsers = (await User.find({ name: regex })).length;
+            const users = await User.find({ name: regex })
+            // .limit(limit);
             res.status(200).json({
                 ok: true,
                 search,
-                users
+                users,
+                // total: totalUsers
             });
             break;
 
