@@ -97,8 +97,6 @@ const updateUser = async (req = request, res = response) => {
 
         const campos = req.body;
 
-        delete campos.role;
-
         delete campos.google;
 
         const emailExist = await User.findOne({ email: campos.email });

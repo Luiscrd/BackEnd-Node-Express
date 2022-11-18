@@ -29,6 +29,8 @@ const getMedics = async (req = request, res = response) => {
 const getMedicById = async (req = request, res = response) => {
 
     const medic = await Medic.findById(req.params.id)
+    .populate('user', 'name img')
+    .populate('hospital', 'name img')
 
     res.status(200).json({
         ok: true,
