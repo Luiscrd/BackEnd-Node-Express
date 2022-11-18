@@ -2,6 +2,16 @@ const { request, response } = require('express');
 const bcrypt = require('bcryptjs');
 const User = require('../models/users');
 const generateJWT = require('../helpers/jwt');
+const nodemailer = require('nodemailer');
+
+const transport = nodemailer.createTransport({
+    host: "smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+      user: "d9094b3b22841d",
+      pass: "80d5b29bc9a6df"
+    }
+  });
 
 const getUsers = async (req = request, res = response) => {
 
@@ -56,6 +66,21 @@ const createUser = async (req = request, res = response) => {
         user.password = bcrypt.hashSync(user.password, salt);
 
         await user.save();
+
+        const message = {
+            from: 'acces@adminpro.com', // Sender address
+            to: 'luiscrua1987@gmail.com',         // List of recipients
+            subject: 'Verifica tu correo', // Subject line
+            text: 'Pulsa en el siguiente enlace para verificar su correo.' // Plain text body
+        };
+
+        transport.sendMail(message, function(err, info) {
+            if (err) {
+              console.log(err)
+            } else {
+              console.log(info);
+            }
+        })
 
         // Generar JWT
         const jwt = await generateJWT(user);
