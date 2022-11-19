@@ -38,6 +38,10 @@ app.use('/api/v1/hospitals', require('./routes/hospital'));
 
 app.use('/api/v1/medics', require('./routes/medic'));
 
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'public/index.html'));
+})
+
 // Imagenes
 
 // app.use(express.static(__dirname + '/'));
