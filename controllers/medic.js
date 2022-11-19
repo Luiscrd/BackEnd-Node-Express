@@ -28,14 +28,26 @@ const getMedics = async (req = request, res = response) => {
 
 const getMedicById = async (req = request, res = response) => {
 
-    const medic = await Medic.findById(req.params.id)
-    .populate('user', 'name img')
-    .populate('hospital', 'name img')
+    try {
 
-    res.status(200).json({
-        ok: true,
-        medic
-    });
+        const medic = await Medic.findById(req.params.id)
+            .populate('user', 'name img')
+            .populate('hospital', 'name img').catch(err => console.log(err))
+
+        res.status(200).json({
+            ok: true,
+            medic
+        });
+
+    } catch (error) {
+
+        res.status(400).json({
+            ok: false,
+            msg: 'Contac from Administrator'
+        });
+    }
+
+
 
 }
 
