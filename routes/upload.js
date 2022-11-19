@@ -8,7 +8,6 @@ const router = Router();
 
 router.put('/:collection/:id', [
     validateJWT,
-    validateRole
 ], uploadFile);
 
 router.get('/:collection/:image', [

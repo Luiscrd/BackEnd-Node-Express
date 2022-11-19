@@ -76,7 +76,54 @@ const validateRole = async (req = request, res = response, next) => {
     }
 }
 
+const validateRoleProp = async (req = request, res = response, next) => {
+
+    const uid = req.uid;
+
+    const id = req.params.id;
+
+    try {
+
+        const usserDb = await User.findById(uid);
+
+        if (!usserDb) {
+
+            return res.status(400).json({
+                ok: false,
+                msg: 'User no Exist'
+            });
+
+        }
+
+        if (usserDb.role === 'ADMIN_ROLE' || uid === id) {
+
+            next();
+
+        } else {
+
+            return res.status(403).json({
+                ok: false,
+                msg: 'Permision Denegated'
+            });
+
+        }
+
+        
+
+    } catch (error) {
+
+        console.log(error);
+
+        return res.status(500).json({
+            ok: false,
+            msg: 'Server Error'
+        });
+
+    }
+}
+
 module.exports = {
     validateJWT,
-    validateRole
+    validateRole,
+    validateRoleProp
 }

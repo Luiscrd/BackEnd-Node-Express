@@ -2,19 +2,18 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 const { getUsers, getUserById, createUser, updateUser, deleteUser } = require('../controllers/users');
 const { validateFields } = require('../middlewares/validate-fields');
-const { validateJWT, validateRole } = require('../middlewares/validate-jwt');
+const { validateJWT, validateRole, validateRoleProp } = require('../middlewares/validate-jwt');
 
 
 const router = Router();
 
 router.get('/', [
     validateJWT,
-    validateRole
 ], getUsers);
 
 router.get('/:id', [
     validateJWT,
-    validateRole
+    validateRoleProp
 ], getUserById);
 
 router.post('/', [
@@ -27,7 +26,7 @@ router.post('/', [
 
 router.put('/:id', [
     validateJWT,
-    validateRole
+    validateRoleProp
 ], updateUser);
 
 router.delete('/:id', [

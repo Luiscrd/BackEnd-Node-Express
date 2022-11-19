@@ -21,7 +21,6 @@ router.post('/google', [
 
 router.get('/renew', [
     validateJWT,
-    validateRole
 ], renewToken);
 
 module.exports = router;
