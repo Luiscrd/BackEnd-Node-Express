@@ -1,4 +1,4 @@
-export const getMenuFrontEnd = (role = 'USER_ROLE') => {
+const getMenuFrontEnd = (role = 'USER_ROLE') => {
 
     const menu = [
         {
@@ -28,4 +28,8 @@ export const getMenuFrontEnd = (role = 'USER_ROLE') => {
 
     return menu;
 
+}
+
+module.exports = {
+    getMenuFrontEnd
 }
