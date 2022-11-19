@@ -2,7 +2,7 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 const { getMedics, getMedicById, createMedic, updateMedic, deleteMedic } = require('../controllers/medic');
 const { validateFields } = require('../middlewares/validate-fields');
-const { validateJWT } = require('../middlewares/validate-jwt');
+const { validateJWT, validateRole } = require('../middlewares/validate-jwt');
 
 
 const router = Router();
@@ -21,14 +21,17 @@ router.post('/', [
     check('hospital', 'Format Hospital id not valid').isMongoId(),
     validateFields,
     validateJWT,
+    validateRole
 ], createMedic);
 
 router.put('/:id', [
-    validateJWT
+    validateJWT,
+    validateRole
 ], updateMedic);
 
 router.delete('/:id', [
-    validateJWT
+    validateJWT,
+    validateRole
 ], deleteMedic);
 
 module.exports = router;

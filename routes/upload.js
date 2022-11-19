@@ -1,13 +1,14 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { uploadFile, getFile } = require('../controllers/upload');
-const { validateJWT } = require('../middlewares/validate-jwt');
+const { validateJWT, validateRole } = require('../middlewares/validate-jwt');
 
 
 const router = Router();
 
 router.put('/:collection/:id', [
-    validateJWT
+    validateJWT,
+    validateRole
 ], uploadFile);
 
 router.get('/:collection/:image', [
