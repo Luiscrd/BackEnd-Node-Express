@@ -12,7 +12,7 @@ const getMenuFrontEnd = (role = 'USER_ROLE') => {
         },
     ]
 
-    if (rele === 'ADMIN_ROLE') {
+    if (role === 'ADMIN_ROLE') {
 
         menu.push({
             title: 'Mantenimiento',
